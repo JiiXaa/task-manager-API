@@ -7,14 +7,12 @@ const connectDB = require('./db/connect');
 require('dotenv').config();
 
 // MIDDLEWARE
+// express.static "connects" our front end.
+app.use(express.static('./public'));
 // need to use this middleware to convert req to json to be able to show data in req.body
 app.use(express.json());
 
 // ROUTES
-app.get('/hello', (req, res) => {
-  res.send('Task Manager API');
-});
-
 app.use('/api/v1/tasks', tasks);
 
 // we connect to the DB first, if connected only then we spin up a server
