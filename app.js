@@ -5,6 +5,7 @@ const app = express();
 const tasks = require('./routes/tasks');
 const connectDB = require('./db/connect');
 require('dotenv').config();
+const custom404 = require('./middleware/404');
 
 // MIDDLEWARE
 // express.static "connects" our front end.
@@ -14,6 +15,8 @@ app.use(express.json());
 
 // ROUTES
 app.use('/api/v1/tasks', tasks);
+
+app.use(custom404);
 
 // we connect to the DB first, if connected only then we spin up a server
 const start = async () => {
